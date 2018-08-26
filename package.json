@@ -1,0 +1,18 @@
+{
+  "name": "formativeb",
+  "version": "1.0.0",
+  "description": "Application that searches through blog posts from food wishes blogger site",
+  "main": "app.js",
+  "scripts": {
+    "test": "dev:server"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "js",
+    "blogger",
+    "react"
+  ],
+  "author": "Isabelle salmon, Cat Clague",
+  "license": "ISC"
+}
