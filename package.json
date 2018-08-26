@@ -14,5 +14,9 @@
     "react"
   ],
   "author": "Isabelle salmon, Cat Clague",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "jquery": "^3.3.1"
+  }
 }
