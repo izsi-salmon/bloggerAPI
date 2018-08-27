@@ -1,0 +1,51 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url('https://www.blogblog.com/1kt/watermark/body_background_birds.png');
+	background-color: #929d77;
+	background-repeat: repeat;
+	background-position: top left;
+}
+
+nav {
+	width: 100vw;
+	background-color: #929c77;
+}
+
+h1 {
+	background-color: #929c77;
+	font-family: fantasy;
+	font-weight: 800;
+	text-align: center;
+	padding: 0.25em;
+}
+
+.container {
+	margin: 0 auto;
+	width: 80%;
+	max-width: 1200px;
+}
+
+.options {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.item {
+	width: 30%;
+	height: 25vh;
+	background-image: url('https://3.bp.blogspot.com/-xuYr1-sJytE/W4CsWCyQy5I/AAAAAAAATSY/XMBR8sYXuNgpZqYDLh2bAfxdoFRWF-1TwCLcBGAs/s320/IMG_6618.JPG');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin: 1em;
+}
+
+.caps {
+	text-transform: uppercase;
+}
