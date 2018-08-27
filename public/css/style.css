@@ -39,11 +39,41 @@ h1 {
 .item {
 	width: 30%;
 	height: 25vh;
-	background-image: url('https://3.bp.blogspot.com/-xuYr1-sJytE/W4CsWCyQy5I/AAAAAAAATSY/XMBR8sYXuNgpZqYDLh2bAfxdoFRWF-1TwCLcBGAs/s320/IMG_6618.JPG');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
 	margin: 1em;
+	position: relative;
+}
+
+.item:hover .image {
+	opacity: 0.5;
+}
+
+.item:hover .itemTitle {
+	opacity: 1;
+}
+
+.image {
+	display: block;
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.itemTitle {
+	opacity: 0;
+	color: black;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
 
 .caps {
