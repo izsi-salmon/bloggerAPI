@@ -1,10 +1,25 @@
+var key;
+
 $.ajax({
-	url:
-		'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=AIzaSyCVP8k3QIFSae1p2uXHPlDaBYZf_pFtQhw',
+	url: '../config.json',
 	dataType: 'json',
 	type: 'GET',
 	success: function(data) {
-		firstPage = data;
+		key = data;
+	},
+	error: function(error) {
+		console.log('Error');
+		console.log(error);
+	}
+});
+
+$.ajax({
+	url:
+		'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=' +
+		key,
+	dataType: 'json',
+	type: 'GET',
+	success: function(data) {
 		getImg(data);
 	},
 	error: function(error) {
