@@ -1,5 +1,3 @@
-var firstPage;
-
 $.ajax({
 	url:
 		'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=AIzaSyCVP8k3QIFSae1p2uXHPlDaBYZf_pFtQhw',
@@ -7,7 +5,7 @@ $.ajax({
 	type: 'GET',
 	success: function(data) {
 		firstPage = data;
-		getImg();
+		getImg(data);
 	},
 	error: function(error) {
 		console.log('Error');
@@ -15,19 +13,15 @@ $.ajax({
 	}
 });
 
-function getImg() {
+// get first image from each post
+function getImg(firstPage) {
 	var images = [];
-	var src = /^src="(https|http|ftp):\/\/([\w-]+(?:(?:\.[\w-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"$/;
-	// console.log(firstPage.items[0].content);
+	var src = /src="(https|http|ftp):\/\/([\w-]+(?:(?:\.[\w-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"/;
 
 	for (var i = 0; i < firstPage.items.length; i++) {
-		// var img;
 		var find = firstPage.items[i].content.match(src);
-		console.log(find);
-		// console.log(firstPage.items[i].content);
+		images.push(find[0]);
 	}
-}
 
-// var str = 'For more information, see Chapter 3.4.5.1';
-// var re = /see (chapter \d+(\.\d)*)/i;
-// var found = str.match(re);
+	console.log(images);
+}
