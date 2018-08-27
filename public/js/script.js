@@ -1,12 +1,24 @@
-var key;
+// GLOBAL VARIABLES
+var anchor = document.getElementById('anchor');
+var images = [];
 
 $.ajax({
-	url: '../config.json',
+	url:
+		'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=AIzaSyCVP8k3QIFSae1p2uXHPlDaBYZf_pFtQhw',
 	dataType: 'json',
 	type: 'GET',
 	success: function(data) {
-		key = data[0].googleKey;
-		getData();
+		firstPage = data;
+		getImg(data);
+    console.log(data);
+    for (var i = 0; i < images.length; i++) {
+      var imgContainer = document.createElement('div');
+      imgContainer.setAttribute('class','item');
+      imgContainer.innerHTML = '<span><a class="titleLink"</span>';
+      anchor.after(imgContainer);
+      writeData(data, i);
+    }
+
 	},
 	error: function(error) {
 		console.log('Error');
@@ -14,32 +26,21 @@ $.ajax({
 	}
 });
 
-function getData() {
-	$.ajax({
-		url:
-			'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=' +
-			key,
-		dataType: 'json',
-		type: 'GET',
-		success: function(data) {
-			getImg(data);
-		},
-		error: function(error) {
-			console.log('Error');
-			console.log(error);
-		}
-	});
-}
-
 // get first image from each post
 function getImg(firstPage) {
-	var images = [];
 	var src = /src="(https|http|ftp):\/\/([\w-]+(?:(?:\.[\w-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?"/;
 
 	for (var i = 0; i < firstPage.items.length; i++) {
 		var find = firstPage.items[i].content.match(src);
-		images.push(find[0]);
+    var url = find[0].substr(4);
+		images.push(url);
 	}
 
 	console.log(images);
+}
+
+function writeData(data, arrayNo){
+  document.getElementsByClassName('item')[0].style.backgroundImage = 'url('+images[arrayNo]+')';
+  document.getElementsByClassName('titleLink')[0].textContent = data.items[arrayNo].title;
+  document.getElementsByClassName('titleLink')[0].setAttribute('href', data.items[arrayNo].url);
 }
