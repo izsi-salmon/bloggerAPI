@@ -1,30 +1,47 @@
 // GLOBAL VARIABLES
 var anchor = document.getElementById('anchor');
 var images = [];
+var key;
 
 $.ajax({
-	url:
-		'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=AIzaSyCVP8k3QIFSae1p2uXHPlDaBYZf_pFtQhw',
+	url: '../config.json',
 	dataType: 'json',
 	type: 'GET',
 	success: function(data) {
-		firstPage = data;
-		getImg(data);
-		console.log(data);
-		for (var i = 0; i < images.length; i++) {
-			var imgContainer = document.createElement('div');
-			imgContainer.setAttribute('class', 'item');
-			imgContainer.innerHTML =
-				'<img class="image"><div class="itemText"><a class="itemTitle"></a></div>';
-			anchor.after(imgContainer);
-			writeData(data, i);
-		}
+		key = data[0].googleKey;
+		getData();
 	},
 	error: function(error) {
 		console.log('Error');
 		console.log(error);
 	}
 });
+
+function getData() {
+	$.ajax({
+		url:
+			'https://www.googleapis.com/blogger/v3/blogs/7173052990851751381/posts?key=' +
+			key,
+		dataType: 'json',
+		type: 'GET',
+		success: function(data) {
+			firstPage = data;
+			getImg(data);
+			for (var i = 0; i < images.length; i++) {
+				var imgContainer = document.createElement('div');
+				imgContainer.setAttribute('class', 'item');
+				imgContainer.innerHTML =
+					'<img class="image"><div class="itemText"><a class="itemTitle"></a></div>';
+				anchor.after(imgContainer);
+				writeData(data, i);
+			}
+		},
+		error: function(error) {
+			console.log('Error');
+			console.log(error);
+		}
+	});
+}
 
 // get first image from each post
 function getImg(firstPage) {
@@ -35,8 +52,6 @@ function getImg(firstPage) {
 		var url = find[0].substr(4);
 		images.push(url);
 	}
-
-	console.log(images);
 }
 
 function writeData(data, arrayNo) {
