@@ -16,6 +16,11 @@ nav {
 	background-color: #929c77;
 }
 
+.titleLink{
+  color: inherit;
+  text-decoration: none;
+}
+
 h1 {
 	background-color: #929c77;
 	font-family: fantasy;

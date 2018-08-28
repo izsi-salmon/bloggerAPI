@@ -31,7 +31,7 @@ function getData() {
 				var imgContainer = document.createElement('div');
 				imgContainer.setAttribute('class', 'item');
 				imgContainer.innerHTML =
-					'<img class="image"><div class="itemText"><a class="itemTitle"></a></div>';
+					'<img class="image"><div class="itemText"><a class="itemTitle" target="_blank"></a></div>';
 				anchor.after(imgContainer);
 				writeData(data, i);
 			}
