@@ -10,15 +10,15 @@ $.ajax({
 	success: function(data) {
 		firstPage = data;
 		getImg(data);
-    console.log(data);
-    for (var i = 0; i < images.length; i++) {
-      var imgContainer = document.createElement('div');
-      imgContainer.setAttribute('class','item');
-      imgContainer.innerHTML = '<span><a class="titleLink"</span>';
-      anchor.after(imgContainer);
-      writeData(data, i);
-    }
-
+		console.log(data);
+		for (var i = 0; i < images.length; i++) {
+			var imgContainer = document.createElement('div');
+			imgContainer.setAttribute('class', 'item');
+			imgContainer.innerHTML =
+				'<img class="image"><div class="itemText"><a class="itemTitle"></a></div>';
+			anchor.after(imgContainer);
+			writeData(data, i);
+		}
 	},
 	error: function(error) {
 		console.log('Error');
@@ -32,15 +32,19 @@ function getImg(firstPage) {
 
 	for (var i = 0; i < firstPage.items.length; i++) {
 		var find = firstPage.items[i].content.match(src);
-    var url = find[0].substr(4);
+		var url = find[0].substr(4);
 		images.push(url);
 	}
 
 	console.log(images);
 }
 
-function writeData(data, arrayNo){
-  document.getElementsByClassName('item')[0].style.backgroundImage = 'url('+images[arrayNo]+')';
-  document.getElementsByClassName('titleLink')[0].textContent = data.items[arrayNo].title;
-  document.getElementsByClassName('titleLink')[0].setAttribute('href', data.items[arrayNo].url);
+function writeData(data, arrayNo) {
+	document.getElementsByClassName('image')[0].style.backgroundImage =
+		'url(' + images[arrayNo] + ')';
+	document.getElementsByClassName('itemTitle')[0].textContent =
+		data.items[arrayNo].title;
+	document
+		.getElementsByClassName('itemTitle')[0]
+		.setAttribute('href', data.items[arrayNo].url);
 }
